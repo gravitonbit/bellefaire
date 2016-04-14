@@ -1,0 +1,21 @@
+#jobs_index {
+	table {
+		margin-top: 65px;
+		margin-bottom: 65px;
+    .responsive-hidden {
+      @media (max-width: $screen-sm-max) {
+        display: none;
+        width:0;
+        height:0;
+        opacity:0;
+        visibility: collapse;
+      }
+    }
+	}
+}
+#job_posting {
+	.job-posting {
+		margin-top: 65px;
+		margin-bottom: 65px;
+	}
+}

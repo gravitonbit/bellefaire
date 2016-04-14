@@ -1,0 +1,25 @@
+.contentBlock {
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+	ul {
+		list-style-position: outside;
+		padding-left: 20px;
+	}
+	.pullquote {
+		background: transparent url(../images/pull-quote.png) no-repeat 50% 0;
+		padding-top: 138px;
+		p {
+			color: #e7a632;
+			font-size: 25px;
+			font-weight: 600;
+			line-height: 34px;
+			margin: 0;
+		}
+		.author {
+			font-style: oblique;
+			margin-bottom: 25px;
+		}
+	}
+}

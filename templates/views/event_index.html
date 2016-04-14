@@ -1,0 +1,129 @@
+{% extends "templates/views/standard_page.html" %}
+{% from 'templates/mixins/service_icons.html' import serviceIcon %}
+{% block body_id %}event_index{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="col-xs-12">
+		<form action="." method="get" class="form-inline service-form">
+			<label for="service">Filter by Service</label>
+			<select name="service" class="form-control">
+				<option value=""></option>
+				{% for service in services %}
+					<option value="{{ service.slug }}"{% if filters.service == service.slug %} selected{% endif %}>{{ service.title }}</option>
+				{% endfor %}
+			</select>
+		</form>	
+	</div>
+</div>
+<div class="container">
+	<div class="event-featured-list">
+
+		{% for event in featuredEvents.results %}
+			<div class="event">
+				<div class="previewImage">
+					<a href="{{ event.fullPath }}">
+						{% if event.previewImage.exists %}
+							<img src="{{ event.previewImage.href }}" alt="{{ event.title }}" class="event-icon img-circle">
+						{% else %}
+							<img src="/images/event-blank.jpg" alt="{{ event.title }}" class="event-icon img-circle">
+						{% endif %}
+						<span class="date">
+							<span class="month">{{ event._.startDate.format('MMM') }}</span>
+							<span class="day">
+								{{ event._.startDate.format('D') }}
+								{% if event.endDate and event._.endDate.format('YYYY-MM-DD') != event._.startDate.format('YYYY-MM-DD')%}
+								- {{ event._.endDate.format('D') }}
+								{% endif %}
+							</span>
+						</span>
+						{% if event.service %}
+							{{ serviceIcon(event.service) }}
+						{% endif %}
+					</a>
+				</div>
+				<h4><a href="{{ event.fullPath }}">{{ event.title }}</a></h4>
+				<p>{{ event.previewText }}</p>
+				<div class="more">
+					<a href="{{ event.fullPath }}">Read More</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% if featuredEvents.totalPages > 1 %}
+	<div class="page_container">
+		<ul class="pagination">
+			{% if featuredEvents.previous %}
+				<li class="previous">
+					<a href="?page={{ featuredEvents.previous }}" class="btn">Previous</a>
+				</li>
+			{% endif %}
+			{% for page in featuredEvents.pages %}
+				<li class="page{% if page == filters.page %} active{% endif %}">
+					{% if page == '...' %}
+						{{ page }}
+					{% else %}
+						<a href="?{{ base_qs }}&page={{ page }}">{{ page }}</a>
+					{% endif %}
+				</li>
+			{% endfor %}
+			{% if featuredEvents.next %}
+				<li class="next">
+					<a href="?page={{ featuredEvents.next }}" class="btn">Next</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+{% endif %}
+
+{% include "templates/snippets/hr.html" %}
+<div class="container" id="events">
+	<div class="col-xs-12">
+		<h2>Event Calendar</h2>
+	</div>
+	<div class="col-xs-12 col-sm-4 col-md-3">
+    <div id="datepicker" data-base-url="{{ base_url }}{{ page.href }}" data-year="{{ filters.year }}" data-month="{{ filters.month }}" data-date="{{ filters.date }}"></div>
+	</div>
+	<div class="col-xs-12 col-sm-8 col-md-offset-1">
+		{% for event in currentEvents %}
+      <div class="row current-event">
+        <div class="col-xs-4 col-xs-offset-4 col-sm-offset-0 col-sm-4 col-md-2 preview">
+	        <div class="previewImage">
+	        	<a href="{{ event.fullPath }}">
+		          {% if event.previewImage.exists %}
+		            <img src="{{ event.previewImage.href }}" alt="{{ event.title }}" class="event-icon img-circle" />
+		          {% else %}
+								<img src="/images/event-blank.jpg" alt="{{ event.title }}" class="event-icon img-circle">
+		          {% endif %}
+	            <span class="date">
+		            <span class="month">{{ event._.startDate.format('MMM') }}</span>
+		            <span class="day">
+		              {{ event._.startDate.format('D') }}
+									{% if event.endDate and event._.endDate.format('YYYY-MM-DD') != event._.startDate.format('YYYY-MM-DD')%}
+									- {{ event._.endDate.format('D') }}
+									{% endif %}
+		            </span>
+	          	</span>
+	          </a>
+	        </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-10">
+            <h4><a href="{{ event.fullPath }}">{{ event.title }}</a></h4>
+            <p>
+              {{ event.previewText }}
+            </p>
+            <a href="{{ event.fullPath }}" class="more">Learn More</a>
+        </div>
+      </div>
+    {% endfor %}
+	</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+window.available_calendar_dates = {{ availableDates }};
+</script>
+{% endblock %}

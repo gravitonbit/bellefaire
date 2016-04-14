@@ -1,0 +1,93 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% block body_id %}contact_page{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="contact-main">
+		<div class="contact-details">
+			<div class="contact">
+				<h4>Phone</h4>
+				<p>216-932-2800 / 800-879-2522</p>
+				<h4>Email</h4>
+				<p>info@bellefairejcb.org</p>
+				<h4>Fax</h4>
+				<p>216-932-6704</p>
+			</div>
+			<div class="social">
+				<h4>Follow Us</h4>
+				<div>
+					<a href="https://www.facebook.com/BellefaireJCB" class="facebook">/BellefaireJcb</a>	
+				</div>
+				<div>
+					<a href="https://twitter.com/bellefairejcb" class="twitter">@BellefaireJCB</a>	
+				</div>
+			</div>
+		</div>
+		<div class="contact-form">
+			{{ page.formEmbed }}
+		</div>
+	</div>
+</div>
+{% include "templates/snippets/hr.html" %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Locations</h2>
+		</div>
+	</div>
+	<div class="locations">
+		{% for location in locations %}
+			<div class="location">
+				<h4>{{ location.title }}</h4>
+				<p>{{ location.address }}</p>
+				{% if location.mapImage.exists %}
+				<img src="{{ location.mapImage.href }}" alt="{{ location.address }}" />
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<div class="department-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>Departments</h2>
+			</div>
+		</div>
+		<div class="departments">
+			{% for department in departments %}
+				<div class="department">
+					<div class="department-inner" style="background-color: {{ department.color }}">
+						{% if department.icon.exists %}
+							<img src="{{ department.icon.href }}" alt="{{ department.title }}">
+						{% else %}
+							<img src="/images/bellefaire-general-icon.png" alt="{{ department.title }}">
+						{% endif %}
+						<h4>{{ department.title }}</h4>
+						<p>{{ department.contactInfo | nl2br }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Key Contacts</h2>
+		</div>
+	</div>
+	<div class="contact-list">
+		{% for contact in keyContacts %}
+			<div class="contact">
+				{% if contact.photo.exists %}
+					<img src="{{ contact.photo.href }}" alt="{{ contact.name }}" class="img-circle img-responsive">
+				{% endif %}
+				<h4>{{ contact.name }}</h4>
+				<p>{{ contact.contactInfo|nl2br }}</p>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

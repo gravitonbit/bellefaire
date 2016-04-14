@@ -1,0 +1,158 @@
+{% extends "templates/layouts/default.html" %}
+
+{% from 'templates/mixins/content_block.html' import pageBlock %}
+{% from 'templates/mixins/service_icons.html' import serviceIcon %}
+
+{% block body_id %}homepage{% endblock %}
+
+{% block content %}
+<div id="homepage-slideshow" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" role="listbox">
+	  {% for slide in slides %}
+	    <div class="item{% if loop.first %} active{% endif %}">
+	      <img src="{{ slide.slideImage.href }}" alt="{{ slide.title }}" />
+	      <div class="carousel-caption">
+	        <h4>
+	        	{{ slide.title }}
+	        </h4>
+	        {% if slide.link %}
+	        <div>
+	        	<a href="{{ slide.link }}" class="btn">Read More</a>
+	        </div>
+	        {% endif %}
+          <a class="left carousel-control" href="#homepage-slideshow" role="button" data-slide="prev">
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#homepage-slideshow" role="button" data-slide="next">
+				    <span class="sr-only">Next</span>
+				  </a>
+	      </div>
+	    </div>
+	  {% endfor %}
+  </div>
+</div>
+<div class="container">
+	<div class="home-lead">
+		<div class="lead-title">
+			<h2>Our Programs</h2>
+		</div>
+		<div class="lead-copy">
+			<p>Bellefaire JCB is among the nation’s largest, most experienced child service agencies providing a variety of behavioral health, substance abuse, education and prevention services. Bellefaire JCB helps more than 21,700 youth and their families yearly achieve resiliency, dignity and self-sufficiency through its more than 25 programs.</p>
+		</div>
+	</div>
+	<div class="services">
+		{% for service in services %}
+		<div class="service">
+			<div class="icon-wrapper">
+				<a href="{{ service.href }}">{{ serviceIcon(service) }}</a>
+				<div class="service-detail" style="background-color: {{ service.serviceColor }}">
+					<p>{{ service.heroDescription }}</p>		
+					<a href="{{ service.href }}" class="btn" style="color: {{ service.serviceColor }}">Learn More</a>
+				</div>
+			</div>
+			<h3 style="color: {{ service.serviceColor }}"><a href="{{ service.href }}">{{ service.title }}</a></h3>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{{ pageBlock(page.storyWidget) }}
+<div class="container">
+	<div class="col-xs-12 col-md-8">
+		<h2>News &amp; Resources</h2>
+		{% set featureStory = newsStories[0] %}
+		<article>
+			<ul class="list-inline service-list">
+				{% for service in featureStory.services %}
+
+					<li>{{ serviceIcon(service) }}{{ service.title }}</li>
+				{% endfor %}
+			</ul>
+			<h2><a href="{{ featureStory.href }}">{{ featureStory.title }}</a></h2>
+			<p>{{ featureStory.previewText }}</p>
+			<div>
+				<a href="{{ featureStory.href }}" class="btn">Read More</a>
+				<a href="/news/" class="btn">View More</a>
+			</div>
+		</article>
+	</div>
+	<div class="col-xs-12 col-md-4">
+		<ul class="news_list list-unstyled">
+			{% for article in newsStories %}
+			{% if loop.index0 != 0 %}
+			<li>
+				{{ serviceIcon(article.services[0]) }}
+				<h5>{{ article.services[0].title }}</h5>
+				<h4><a href="{{ article.href }}">{{ article.title }}</a></h4>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+{{ pageBlock(page.heroWidget) }}
+<div class="container">
+	<div class="home-bottom">
+		<div class="col">
+			<h2>{{ page.snippet.title }}</h2>
+			{% if page.snippet.image.exists %}
+				<a href="{{ page.snippet.link }}"><img src="{{ page.snippet.image.href }}" alt="{{ page.snippet.linkText }}"></a>
+			{% endif %}
+			<h5><a href="{{ page.snippet.link }}">{{ page.snippet.linkText }}</a></h5>
+			<p>{{ page.snippet.description }}</p>
+			<a href="{{ page.snippet.link }}" class="btn">Read More</a>
+		</div>
+		<div class="col">
+			<h2>Featured Events</h2>
+			<ul class="upcomingEvents list-unstyled">
+				{% for event in upcomingEvents %}
+					<li>
+						<div class="row">
+							<div class="col-lg-3 col-md-4 col-xs-3">
+								<div class="previewImage">
+									<a href="{{ event.fullPath }}">
+										{% if event.previewImage.exists %}
+											<img src="{{ event.previewImage.href }}" alt="{{ event.title }}" class="img-responsive img-circle">
+										{% else %}
+											<img src="/images/event-blank.jpg" alt="{{ event.title }}" class="img-responsive img-circle">
+										{% endif %}
+										<span class="date">
+											<span class="month">{{ event._.startDate.format('MMM') }}</span>
+											<span class="day">
+												{{ event._.startDate.format('D') }}
+												{% if event.endDate and event._.endDate.format('YYYY-MM-DD') != event._.startDate.format('YYYY-MM-DD')%}
+												- {{ event._.endDate.format('D') }}
+												{% endif %}
+											</span>
+										</span>
+									</a>
+								</div>
+							</div>
+							<div class="col-lg-9 col-md-8 col-xs-9">
+								<p>{{ event.title }}</p>
+								<div class="more"><a href="{{ event.fullPath }}">Learn More</a></div>
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+			<div>
+				<a href="/events/" class="btn">View More</a>
+			</div>
+		</div>
+		<div class="col">
+			{{ page.newsletterEmbed }}
+			<div class="social row">
+				<div class="col-xs-12">
+					<h4>Follow Us</h4>
+				</div>
+				<div class="col-xs-6">
+					<a href="https://www.facebook.com/BellefaireJCB" class="facebook">/BellefaireJcb</a>	
+				</div>
+				<div class="col-xs-6">
+					<a href="https://twitter.com/bellefairejcb" class="twitter">@BellefaireJCB</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

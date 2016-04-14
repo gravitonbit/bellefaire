@@ -1,0 +1,40 @@
+<div class="container hidden-print">
+	<div class="section col-xs-12 col-sm-6 col-md-3">
+		<h4>Bellefaire JCB</h4>
+		<p>One Pollock Circle</p>
+		<p>22001 Fairmount Blvd.</p>
+		<p>Cleveland, OH 44118</p>
+	</div>
+
+	<div class="section col-xs-12 col-sm-6 col-md-3">
+		<h4>Contact</h4>
+		<p>1-800-877-2522 / 216-932-2800</p>
+		<p>info@bellefairejcb.org</p>
+	</div>
+
+	<div class="section col-xs-12 col-sm-6 col-md-3">
+		<h4>Helpful Links</h4>
+		<ul class="list-unstyled navLinks">
+			{% for page in nav.footer.pages %}
+				<li><a href="{{ page.href }}">{{ page.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="section col-xs-12 col-sm-6 col-md-3">
+		<h4>Donate to Bellefaire</h4>
+		<a href="/donate/" class="btn">Donate</a>
+	</div>
+</div>
+
+<div class="bottom">
+	<div class="container">
+		<p class="copy pull-left">&copy; 2016 Bellefaire JCB</p>
+		
+		<ul class="social pull-right list-inline">
+			<li class="follow">Follow Us:</li>
+			<li><a href="https://www.facebook.com/BellefaireJCB"><img src="/images/facebook-util-reverse.png" alt="Facebook" class="fbw"></a></li>
+			<li><a href="https://twitter.com/bellefairejcb"><img src="/images/twitter-util-reverse.png" alt="Twitter" class="tweet"></a></li>
+		</ul>
+	</div>
+</div>

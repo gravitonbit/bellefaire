@@ -1,0 +1,169 @@
+#service {
+	.serviceHero {
+		background: url(../images/translucent-color.png) repeat 50% 50%;
+		padding: 15px 0 0;
+		.pageNav {
+			background: url(../images/translucent-color.png) repeat 50% 50%;
+			min-height: 75px;
+			position: relative;
+			padding-bottom: 6px;
+			&:after {
+				display: block;
+				content: " ";
+				background: url(../images/white-bubble-bottom.png) repeat-x 50% 100%;
+				width: 100%;
+				bottom: 0;
+				height: 6px;
+				position: absolute;
+			}
+		}
+		.jumbo_row {
+			margin-top: 50px;
+			margin-bottom: 50px;
+			@media print {
+				margin: 0;
+			}
+		}
+		h1 {
+			margin-top: 30px;
+			@media print {
+				margin: 0;
+			}
+		}
+		img.serviceIcon {
+			box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.4);
+			width: 50%;
+			@media (min-width: $screen-sm-min) {
+				width: 100%;
+			}
+		}
+	}
+
+	.resources{
+		h2{
+			font-size: 18px;
+		}
+		p{
+			font-size: 16px;
+		}
+		.invisible{
+			display:none
+		}
+	}
+	.resource:nth-of-type(1n+4) {display: none;} 
+	.event:nth-of-type(1n+4) {display: none;}
+	.service-list {
+		text-transform: uppercase;
+		font-size: 12px;
+		line-height: 30px;
+		font-weight: 600;
+		margin-bottom: 20px;
+		li {
+			margin-right: 10px;
+			font-size: 0;
+  	color: transparent;
+  	@media (min-width: $screen-sm-min) {
+  		font-size: inherit;
+    	color: inherit;
+  	}
+		}
+		img {
+			width: 30px;
+			margin-right: 10px;
+		}
+	}
+
+	.previewImage {
+		position: relative;
+		margin-bottom: 30px;
+		a {
+			display: block;
+		}
+		.date {
+			position: absolute;
+			z-index: 1;
+			left: 0;
+			top: 50%;
+			text-align: center;
+			width: 100%;
+			color: white;
+			text-transform: uppercase;
+			@include transform(translateY(-50%));
+			line-height: 1.2;
+			text-shadow: 2px 2px 5px rgba(1, 1, 1, 0.4);
+			.month, .day {
+				display: block;
+			}
+			.month {
+				font-weight: 600;
+			}
+		}
+		.serviceIcon {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 33%;
+		}
+		.event-icon {
+			width: 100%;
+		}
+	}
+
+	.service-form {
+		margin-top: 40px;
+		margin-bottom: 40px;
+		@media (min-width: $screen-sm-min) {
+			float: right;
+		}
+	}
+
+	.event-featured-list, .resources {
+		@include make-row(60px);
+		.event, .resource {
+			@include make-xs-column(12, 60px);
+			@include make-sm-column(6, 60px);
+			@include make-md-column(4, 60px);
+			@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+				&:nth-child(2n+1) {
+					clear: left;
+				}
+			}
+			@media (min-width: $screen-md-min) {
+				&:nth-child(3n+1) {
+					clear: left;
+				}
+			}
+			margin-bottom: 40px;
+			h3 {
+				margin-bottom: 20px;
+			}
+			p {
+				margin-bottom: 20px;
+			}
+			.previewImage .date {
+				font-size: 45px;
+			}
+		}
+	}
+	.current-event {
+		margin-bottom: 75px;
+		.previewImage .date {
+			font-size: 16px;
+		}
+		h4 {
+			margin-top: 0;
+		}
+		p {
+			margin-bottom: 10px;
+		}
+	}
+}
+img.serviceIcon {
+	width: 100%;
+	background: url(../images/translucent-color.png) repeat 50% 50%;
+	border-radius: 50000px;
+	@media print {
+		display: none;
+	}
+}
+

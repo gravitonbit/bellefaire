@@ -1,0 +1,14 @@
+.table {
+	> thead > tr > th, > tbody > tr > td {
+		border: none;
+	}
+	th {
+		font-weight: 600;
+		color: white;
+		background: $brand-primary;
+		font-size: 23px;
+	}
+	a {
+		font-weight: 600;
+	}
+}

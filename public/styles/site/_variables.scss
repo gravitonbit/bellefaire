@@ -1,0 +1,46 @@
+// Override Bootstrap variables in this file, e.g.
+
+$text-color     : #585858;
+$headings-color : #545454;
+
+$font-size-base         : 16px;
+$font-family-sans-serif : "AvenirNextCyrW00-Regular", Verdana, serif !default;
+$font-family-serif      : Georgia, "Times New Roman", Times, serif !default;
+$font-size-h1           : 43px;
+$font-size-h2           : 32px;
+$font-size-large        : 29px;
+$jumbotron-font-size    : $font-size-base;
+$brand-primary          : #6c689f;
+$brand-secondary        : #ffb530;
+$link-color             : $brand-primary;
+
+$line-height-base : 1.6; // 25 px
+
+$navbar-default-color               : #ffffff;
+$navbar-height                      : 70px;
+$navbar-default-bg                  : transparent;
+$nav-link-hover-bg                  : transparent;
+$navbar-default-link-color          : $navbar-default-color;
+$navbar-default-link-hover-color    : $navbar-default-color;
+$navbar-default-link-active-color   : $navbar-default-color;
+$navbar-default-link-disabled-color : $navbar-default-color;
+
+
+$btn-default-color  : white;
+$btn-default-border : transparent;
+
+$breadcrumb-padding-vertical   : 8px;
+$breadcrumb-padding-horizontal : 15px;
+$breadcrumb-bg                 : transparent;
+$breadcrumb-color              : white;
+$breadcrumb-active-color       : white;
+$breadcrumb-separator          : ">";
+
+$border-radius-base  : 500px;
+$border-radius-large : $border-radius-base;
+$border-radius-small : $border-radius-base;
+
+
+$table-cell-padding:            18px;
+$table-bg-accent:               #e8e8e8;
+$table-border-color:            #ddd !default;

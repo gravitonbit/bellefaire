@@ -1,0 +1,55 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% block body_id %}jobs_index{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Open Positions</th>
+						<th class="responsive-hidden">Job Category</th>
+						<th class="responsive-hidden">Job Type</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for job in jobs.results %}
+					<tr>
+						<td><a href="{{ job.href }}">{{ job.title }}</a></td>
+						<td class="responsive-hidden">{{ job.jobCategory.title }}</td>
+						<td class="responsive-hidden">{{ job.jobType.title }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% if jobs.totalPages > 1 %}
+				<div class="page_container">
+					<ul class="pagination">
+						{% if jobs.previous %}
+							<li class="previous">
+								<a href="?page={{ jobs.previous }}" class="btn">Previous</a>
+							</li>
+						{% endif %}
+						{% for page in jobs.pages %}
+							<li class="page{% if page == filters.page %} active{% endif %}">
+								{% if page == '...' %}
+									{{ page }}
+								{% else %}
+									<a href="?page={{ page }}">{{ page }}</a>
+								{% endif %}
+							</li>
+						{% endfor %}
+						{% if jobs.next %}
+							<li class="next">
+								<a href="?page={{ jobs.next }}" class="btn">Next</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

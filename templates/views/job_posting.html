@@ -1,0 +1,21 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% block body_id %}job_posting{% endblock %}
+
+{% block pageTitle %}{% endblock %}
+{% block internal_content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="job-posting">
+				<h1>{{ page.title }}</h1>
+				<ul class="list-unstyled list-details">
+					<li><span>Job Category:</span> {{ jobCategory.title }}</li>
+					<li><span>Job Type:</span> {{ jobType.title }}</li>
+				</ul>
+				{{ page.details }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

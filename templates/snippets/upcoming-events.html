@@ -1,0 +1,37 @@
+{% if featuredEvents|length %}
+<div class="container">
+	<h2>Upcoming Events</h2>			
+	<div class="event-featured-list">
+		{% for event in featuredEvents %}
+			<div class="event">
+				<div class="previewImage">
+					<a href="{{ event.fullPath }}">
+						{% if event.previewImage.exists %}
+							<img src="{{ event.previewImage.href }}" alt="{{ event.title }}" class="event-icon img-circle">
+						{% else %}
+							<img src="/images/event-blank.jpg" alt="{{ event.title }}" class="event-icon img-circle">
+						{% endif %}
+						<span class="date">
+							<span class="month">{{ event._.startDate.format('MMM') }}</span>
+							<span class="day">
+								{{ event._.startDate.format('D') }}
+								{% if event.endDate and event._.endDate.format('YYYY-MM-DD') != event._.startDate.format('YYYY-MM-DD')%}
+								- {{ event._.endDate.format('D') }}
+								{% endif %}
+							</span>
+						</span>
+						{% if event.service %}
+							{{ serviceIcon(event.service) }}
+						{% endif %}
+					</a>
+				</div>
+				<h4><a href="{{ event.fullPath }}">{{ event.title }}</a></h4>
+				<p>{{ event.previewText }}</p>
+				<div class="more">
+					<a href="{{ event.fullPath }}">Read More</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}

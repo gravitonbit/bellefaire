@@ -1,0 +1,15 @@
+.contact-list {
+	@include make-row(110px);
+	.contact {
+		@include make-xs-column(8, 110px);
+		@include make-xs-column-push(2);
+		@include make-sm-column(6, 110px);
+		@include make-sm-column-push(0);
+		@include make-md-column(3, 110px);
+		text-align: center;
+		img {
+			margin-bottom: 20px;
+			width: 100%;
+		}
+	}
+}

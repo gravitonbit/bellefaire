@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="col-sm-12">
+		<ol class="breadcrumb">
+			{% for page in breadcrumb %}
+				<li{% if page.href == full_path %} class="active"{% endif %}><a href="{{ page.href }}" title="{{ page.title }}">{{ page.title }}</a></li>
+			{% endfor %}
+		</ol>
+	</div>
+</div>

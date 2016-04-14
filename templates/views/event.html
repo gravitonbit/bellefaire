@@ -1,0 +1,24 @@
+{% extends "templates/views/base_page.html" %}
+
+{% block body_id %}event{% endblock %}
+
+{% block jumbotron %}
+  {{ super() }}
+  <div class="event_detail">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>When &amp; Where</h4>
+          <span class="date">{{ page._.event.start.moment().format('MMMM D, YYYY') }}</span>
+          <span class="time">
+            {{ page._.event.start.moment().format('h:mm A') }}
+            {% if page.event.end %}
+            - {{ page._.event.end.moment().format('h:mm A') }}
+            {% endif %}
+          </span>
+          <span class="location">{{ page.event.location }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

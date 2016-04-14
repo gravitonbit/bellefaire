@@ -1,0 +1,26 @@
+{% extends "templates/views/standard_page.html" %}
+{% from 'templates/mixins/service_icons.html' import serviceIcon %}
+{% block body_id %}service{% endblock %}
+{% block hero %}
+	<div class="serviceHero" style="background-color: {{ page.serviceColor }}">
+		<div class="container">
+			{% if breadcrumb %}
+				{% include "templates/snippets/breadcrumb.html" %}
+			{% endif %}
+			<div class="row jumbo_row">
+				<div class="col-xs-12 text-center col-sm-3">
+					{{ serviceIcon(page, dark=true) }}
+				</div>
+				<div class="col-xs-12 col-sm-9">
+					<h1>{{ page.title }}</h1>
+					<p>{{ page.heroDescription }}</p>
+				</div>
+			</div>
+		</div>
+		<div class="pageNav hidden-print" style="background-color: {{ page.serviceColorDark }}">
+			<div class="container">
+				{% include "templates/snippets/anchors.html" %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

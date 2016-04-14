@@ -1,0 +1,150 @@
+#contact_page {
+	h2 {
+		margin-top: 0;
+	}
+	a.phone-number {
+		color: inherit;
+		cursor: default;
+	}
+	a.phone-number:hover {
+		text-decoration:none;
+	}
+	.contact-main {
+		@include make-row(60px);
+		.contact-details {
+			@include make-xs-column(12, 60px);
+			@include make-sm-column(4, 60px);
+			margin-top: 80px;
+			.contact, .social {
+				box-shadow: 0 0 7px rgba(1, 2, 2, 0.29);
+				position: relative;
+				text-align: center;
+				padding: 60px 0 10px;
+				margin-bottom: 65px;
+				&:before {
+					content: " ";
+					display: block;
+					background: transparent no-repeat 50% 0;
+					position: absolute;
+					top: -26px;
+					height: 62px;
+					width: 100%;
+				}
+				h4 {
+					text-transform: uppercase;
+					font-size: 16px;
+					font-weight: 600;
+					margin: 0;
+				}
+				
+			}
+			.contact {
+				&:before {
+					background-image: url(../images/contact-phone-icon.png);
+				}
+			}
+			.social {
+				padding-bottom: 30px;
+				&:before {
+					background-image: url(../images/contact-social-icon.png);
+				}
+			}
+		}
+		.contact-form {
+			@include make-xs-column(12, 60px);
+			@include make-sm-column(8, 60px);
+			margin-top: 80px;
+		}
+	}
+	.locations {
+		@include make-row(60px);
+		.location {
+			@include make-xs-column(12, 60px);
+			@include make-sm-column(6, 60px);
+			margin-bottom: 70px;
+			img {
+				@include img-responsive;
+			}
+			&:nth-child(odd) {
+				clear: left;
+			}
+		}
+	}
+	.department-container {
+		background: #f0ede4 url(../images/translucent-color.png) repeat 50% 50%;
+		@include background-image(url(../images/translucent-color.png),
+															linear-gradient(to bottom, darken(#f0ede4, 10%) 0, rgba(0, 0, 0, 0) 20px),
+															linear-gradient(to top, darken(#f0ede4, 10%) 0, rgba(0, 0, 0, 0) 20px));
+		position: relative;
+		padding-top: 95px;
+		padding-bottom: 95px;
+		margin-bottom: 80px;
+		&:before {
+			display: block;
+			content: " ";
+			background: url(../images/white-bubble-top.png) repeat-x 50% 0%;
+			width: 100%;
+			top: 0;
+			height: 6px;
+			position: absolute;
+		}
+		&:after {
+			display: block;
+			content: " ";
+			background: url(../images/white-bubble-bottom.png) repeat-x 50% 100%;
+			width: 100%;
+			bottom: 0;
+			height: 6px;
+			position: absolute;
+		}
+		.departments {
+			@include make-row(80px);
+			color: white;
+			h4, .h4 {
+				color: white;
+				font-size: 16px;
+				margin-top: 0;
+			}
+			.department {
+				@include make-xs-column(12, 80px);
+				@include make-sm-column(6, 80px);
+				@include make-md-column(4, 80px);
+				@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+					&:nth-child(2n+1) {
+						clear: left;
+					}
+				}
+				@media (min-width: $screen-md-min) {
+					&:nth-child(3n+1) {
+						clear: left;
+					}
+				}
+				margin-top: 35px;
+				margin-bottom: 35px;
+				.department-inner {
+					background: url(../images/translucent-color.png) repeat 50% 50%;
+					padding: 50px;
+					text-align: center;
+					position: relative;
+					p {
+						margin-bottom: 0;
+					}
+					img {
+						position: absolute;
+						top: -31px;
+						left: 50%;
+						margin-left: -31px;
+						width: 62px;
+						height: 62px;
+					}
+					a{
+						color: white;
+					}
+				}
+			}
+		}
+	}
+	.contact-list {
+		margin-bottom: 80px;
+	}
+}

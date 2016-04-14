@@ -1,0 +1,211 @@
+{% macro contentBlock(blockContent, blockKey) %}
+<div class="contentBlock">
+	{% if blockContent[blockKey + 'PullQuoteText'] %}
+		<div class="pullquote">
+			<p>{{ blockContent[blockKey + 'PullQuoteText'] }}</p>
+			{% if blockContent[blockKey + 'PullQuoteAuthor'] %}
+				<div class="author">- {{ blockContent[blockKey + 'PullQuoteAuthor'] }}</div>
+			{% endif %}
+		</div>
+	{% endif %}
+	{% if blockContent[blockKey + 'Image'].exists %}
+		<img src="{{ blockContent[blockKey + 'ImageSrc'] }}" alt="{{ blockContent[blockKey + 'ImageAlt'] }}"/>
+	{% endif %}
+	{% if blockContent[blockKey + 'Embed'] %}
+		{{ blockContent[blockKey + 'Embed'] }}
+	{% endif %}
+	{% if blockContent[blockKey + 'Youtube'] %}
+	<div class="embed_container">
+		<iframe src="//www.youtube.com/embed/{{ blockContent[blockKey + 'YoutubeId'] }}" allowfullscreen></iframe>
+	</div>
+	{% endif %}
+	{% if blockContent[blockKey + 'Content'] %}
+		{{ blockContent[blockKey + 'Content'] }}
+	{% endif %}
+	{% if blockContent[blockKey + 'ButtonText'] %}
+		<a href="{{ blockContent[blockKey + 'ButtonLink'] }}" class="btn btn-default{% if blockKey != 'main' %} btn-block{% endif %} btn-md">{{ blockContent[blockKey + 'ButtonText'] }}</a>
+	{% endif %}
+	{% if blockContent[blockKey + 'Related'].length > 0 %}
+		<h3>Related</h3>
+		{% for relatedItem in blockContent[blockKey + 'Related'] %}
+			<div class="media">
+				{% if relatedItem.previewImage.exists %}
+				<div class="media-left">
+					<a href="{{ relatedItem.href }}"><img src="{{ relatedItem.previewImage.url }}" class="media-object" /></a>
+				</div>
+				{% endif %}
+				<div class="media-body">
+					<h4 class="media-heading"><a href="{{ relatedItem.href }}">{{ relatedItem.preview.title }}</a></h4>
+					<p>{{ relatedItem.preview.description }}</p>
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+</div>
+{% endmacro %}
+
+{% macro pageBlock(content_block) %}
+	{% if content_block.slug %}
+		<a class="page-slug-anchor" name="{{ content_block.slug }}"></a>
+	{% endif %}
+	<div class="page_block">
+		{% if content_block.__t == 'ThreeCol' %}
+			{% if content_block.title %}
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h3>{{ content_block.title }}</h3>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="container three_col">
+				<div class="row">
+					<div class="col-sm-4">
+						{{ contentBlock(content_block, 'left') }}
+					</div>
+					<div class="col-sm-4">
+						{{ contentBlock(content_block, 'center') }}
+					</div>
+					<div class="col-sm-4">
+						{{ contentBlock(content_block, 'right') }}
+					</div>
+				</div>
+			</div>
+		{% elif content_block.__t == 'FullWidth' %}
+			{% if content_block.title %}
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h3>{{ content_block.title }}</h3>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="container full_width">
+				<div class="row">
+					<div class="col-sm-12">
+						{{ contentBlock(content_block, 'main') }}
+					</div>
+				</div>
+			</div>
+		{% elif content_block.__t == 'LeftAside' %}
+			{% if content_block.title %}
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h3>{{ content_block.title }}</h3>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="container left_aside">
+				<div class="row">
+					<div class="col-sm-4">
+						{{ contentBlock(content_block, 'aside') }}
+					</div>
+					<div class="col-sm-8">
+						{{ contentBlock(content_block, 'main') }}
+					</div>
+				</div>
+			</div>
+		{% elif content_block.__t == 'RightAside' %}
+			{% if content_block.title %}
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<h3>{{ content_block.title }}</h3>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="container right_aside">
+				<div class="row">
+					<div class="col-sm-8">
+						{{ contentBlock(content_block, 'main') }}
+					</div>
+					<div class="col-sm-4">
+						{{ contentBlock(content_block, 'aside') }}
+					</div>
+				</div>
+			</div>
+		{% elif content_block.__t == 'HeroContentBlock' %}
+			<div class="jumbotron">
+				<div class="container">
+					<div class="row jumbo_row">
+						<div class="col-sm-12">
+							{% if content_block.title %}
+								<h1>{{ content_block.title }}</h1>
+							{% endif %}
+							{% if content_block.description %}
+								<p>{{ content_block.description }}</p>
+							{% endif %}
+							{% if content_block.buttonText %}
+								<div class="btn-group">
+									<a href="{{ content_block.buttonLink }}" class="btn btn-lg">
+										{{ content_block.buttonText }}
+									</a>
+								</div>
+							{% endif %}
+							<!--anchor testing-->
+						</div>
+					</div>
+				</div>
+			</div>
+		{% elif content_block.__t == 'StoryContentBlock' %}
+			<div class="jumbotron story">
+				<div class="container">
+					<div class="row jumbo_row">
+						<div class="col-sm-12">
+							{% if content_block.title %}
+								<h1>{{ content_block.title }}</h1>
+							{% endif %}
+							{% if content_block.description %}
+								<h2>{{ content_block.description }}</h2>
+							{% endif %}
+							{% if content_block.readMoreLink %}
+								<a href="{{ content_block.readMoreLink }}" class="btn pull-left">Read More</a>
+							{% endif %}
+							{% if content_block.viewMoreLink %}
+								<a href="{{ content_block.viewMoreLink }}" class="more-stories pull-right">View More Stories</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% elif content_block.__t == 'HorizontalRule' %}
+			<div class="container">
+				<div class="hr"></div>
+			</div>
+		{% elif content_block.__t == 'MediaObject' %}
+			<div class="container media_object">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2>{{ content_block.title }}</h2>
+					</div>
+				</div>
+				<div class="row">
+					{% set cls = cycler("odd", "even") %}
+					{% for item in content_block.mediaItems %}
+						{% if cls.next() == "odd" %}
+						<div class="clearfix hidden-xs"></div>
+						{% endif %}
+						<div class="col-sm-6 media_item">
+							<div class="row">
+								<div class="col-xs-3">
+									{% if item.image.exists %}
+										<img src="{{ item.image.href }}" alt="{{ item.imageAlt }} "/>
+									{% endif %}
+								</div>
+								<div class="col-xs-9">
+									<h4>{{ item.title }}</h4>
+									{{ item.content }}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+	</div>
+{% endmacro %}

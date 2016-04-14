@@ -1,0 +1,3 @@
+{% macro serviceIcon(service, dark=false) %}
+<img src="{{ service.serviceIcon.href }}" alt="{{ service.title }}" class="serviceIcon"  style="background-color: {% if dark %}{{ service.serviceColorDark }}{% else %}{{ service.serviceColor }}{% endif %}" />
+{% endmacro %}

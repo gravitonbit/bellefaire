@@ -1,0 +1,22 @@
+{% if resources.results|length %}
+<div class="container">
+	<h2>Resources</h2>
+	<div class="resources">
+		{% for article in resources.results %}
+			<article class="resource">
+				<ul class="list-inline service-list">
+					{% for service in article.services %}
+						<li class="invisible {{ service.slug }}">{{ serviceIcon(service) }}{{ service.title }}</li>
+					{% endfor %}
+				</ul>
+				<h2><a href="{{ article.href }}">{{ article.title }}</a></h2>
+				<p class="elipsis">{{ article.content | truncate(120) }}</p>
+				<div class="more">
+					<a href="{{ article.href }}" title="Read More">Read More</a>
+				</div>
+			</article>
+		{% endfor %}
+	</div>
+</div>
+{% include "templates/snippets/hr.html" %}
+{% endif %}

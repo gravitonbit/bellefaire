@@ -1,0 +1,109 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% from 'templates/mixins/service_icons.html' import serviceIcon %}
+
+{% block body_id %}event_page{% endblock %}
+{% block pageTitle %}{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="rail_container">
+		<div class="rail_body">
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-0">
+					<div class="previewImage">
+						{% if page.previewImage.exists %}
+							<img src="{{ page.previewImage.href }}" alt="{{ page.title }}" class="img-responsive img-circle">
+						{% else %}
+							<img src="/images/event-blank.jpg" alt="{{ page.title }}" class="img-responsive img-circle">
+						{% endif %}
+						<span class="date">
+							<span class="month">{{ page._.startDate.format('MMM') }}</span>
+							<span class="day">
+								{{ page._.startDate.format('D') }}
+								{% if page.endDate and page._.endDate.format('YYYY-MM-DD') != page._.startDate.format('YYYY-MM-DD')%}
+								- {{ page._.endDate.format('D') }}
+								{% endif %}
+							</span>
+						</span>
+						{% if page.service %}
+						{{ serviceIcon(page.service) }}
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-9">
+					<h1>{{ page.title }}</h1>
+					<ul class="list-unstyled list-details">
+						<li><span>Time:</span> {{ page.time }}</li>
+						<li><span>Location:</span> {{ page.location }}</li>
+					</ul>
+					<div class="share_this">
+						<div class="contents">
+							<span class='st_twitter_large' displayText='Tweet' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+							<span class='st_facebook_large' displayText='Facebook' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+		          			<span class='st_email_large' displayText='Email' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+		          			<span class='st_print_large' displayText='Print' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 event-body">
+					{{ page.details }}
+				</div>
+			</div>
+			<div class="page_container">
+				<ul class="pagination">
+					{% if prevEvent %}
+						<li class="previous">
+							<a href="{{ prevEvent.href }}" class="btn">Previous</a>
+						</li>
+					{% endif %}
+					{% if nextEvent %}
+						<li class="next">
+							<a href="{{ nextEvent.href }}" class="btn">Next</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		<div class="rail">
+			<div class="module">
+				<h3>Upcoming Events</h3>
+				<ul class="upcomingEvents">
+					{% for event in upcomingEvents %}
+						<li>
+							<div class="row">
+								<div class="col-xs-4">
+									<div class="previewImage">
+										<a href="{{ event.fullPath }}">
+											{% if event.previewImage.exists %}
+												<img src="{{ event.previewImage.href }}" alt="{{ event.title }}" class="img-responsive img-circle">
+											{% else %}
+												<img src="/images/event-blank.jpg" alt="{{ event.title }}" class="img-responsive img-circle">
+											{% endif %}
+											<span class="date">
+												<span class="month">{{ event._.startDate.format('MMM') }}</span>
+												<span class="day">
+													{{ event._.startDate.format('D') }}
+													{% if event.endDate and event._.endDate.format('YYYY-MM-DD') != event._.startDate.format('YYYY-MM-DD')%}
+													- {{ event._.endDate.format('D') }}
+													{% endif %}
+												</span>
+											</span>
+										</a>
+									</div>
+								</div>
+								<div class="col-xs-8">
+									<p>{{ event.title }}</p>
+									<div class="more"><a href="{{ event.fullPath }}">Learn More</a></div>
+								</div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

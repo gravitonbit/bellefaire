@@ -1,0 +1,98 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% block body_id %}press_page{% endblock %}
+
+{% block jumbo_content %}
+	<div class="row jumbo_row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h1>Press</h1>
+		</div>
+	</div>
+{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="rail_container">
+		<div class="rail_body">
+			{% for article in articles.results %}
+			<article>
+				<h3><a href="{{ article.pressLink }}" title="{{ article.title }}">{{ article.title }}</a></h3>
+				<p>{{ article.description }}</p>
+
+				<div class="share_this">
+						<div class="contents">
+							<span class='st_twitter_large' displayText='Tweet' st_title='{{ page.title }}' st_url='{{ page.href }}' data-category="ShareThis Article" data-action="ShareThis - Click" data-label="twitter"></span>
+							<span class='st_facebook_large' displayText='Facebook' st_title='{{ page.title }}' st_url='{{ page.href }}' data-category="ShareThis Article" data-action="ShareThis - Click" data-label="facebook"></span>
+		          			<span class='st_email_large' displayText='Email' st_title='{{ page.title }}' st_url='{{ page.href }}' data-category="ShareThis Article" data-action="ShareThis - Click" data-label="email"></span>
+		          			<span class='st_print_large' displayText='Print' st_title='{{ page.title }}' st_url='{{ page.href }}' data-category="ShareThis Article" data-action="ShareThis - Click" data-label="print"></span>
+						</div>
+					</div>
+
+				<a href="{{ article.pressLink }}" title="Read More" class="more">Read More</a>
+			</article>
+			{% endfor %}
+			{% if articles.totalPages > 1 %}
+				<div class="page_container">
+					<ul class="pagination">
+						{% if articles.previous %}
+							<li class="previous">
+								<a href="?page={{ articles.previous }}" class="btn">Previous</a>
+							</li>
+						{% endif %}
+						{% for page in articles.pages %}
+							<li class="page{% if page == filters.page %} active{% endif %}">
+								{% if page == '...' %}
+									{{ page }}
+								{% else %}
+									<a href="?{{ base_qs }}&page={{ page }}">{{ page }}</a>
+								{% endif %}
+							</li>
+						{% endfor %}
+						{% if articles.next %}
+							<li class="next">
+								<a href="?page={{ articles.next }}" class="btn">Next</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+		<div class="rail">
+			<div class="module">
+				<h3>Press Kit</h3>
+				<p>{{ page.pressKitDescription }}</p>
+				<a href="{{ page.pressKitLink }}" class="btn">Download Press Kit</a>
+			</div>
+			<div class="module">
+				<h3>Archives</h3>
+				<div class="accordion">
+					{% for year, months in data.archive %}
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle collapsed" data-toggle="collapse" href="#archive-{{ year }}">{{ year }}</a>
+							</div>
+							<div id="archive-{{ year }}" class="accordion-body collapse year">
+								<div class="accordion-inner sort-by-month">
+								{% for month in months %}
+										<a href="{{ full_path }}?year={{ year }}&month={{ month.month()+1 }}" class="{{ month.month()+1 }}">
+											{{ month.format('MMMM') }}
+										</a>
+								{% endfor %}
+							</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="module">
+				<h3>Expert Topics</h3>
+				<ul class="expert_topics">
+					{% for topic in topics %}
+						<li><a href="{{ full_path}}?topic={{ topic.slug }}">{{ topic.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

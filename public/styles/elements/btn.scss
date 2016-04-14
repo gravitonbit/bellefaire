@@ -1,0 +1,13 @@
+.btn, a.btn {
+	background: #ffa608;
+  @include background-image(linear-gradient(to bottom right, #ffc257, #ffa608));
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: white;
+  white-space: normal;
+  @media print {
+  	display: none;
+  }
+}

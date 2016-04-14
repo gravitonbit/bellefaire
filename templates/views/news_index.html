@@ -1,0 +1,83 @@
+{% extends "templates/views/standard_page.html" %}
+{% from 'templates/mixins/service_icons.html' import serviceIcon %}
+
+{% block body_id %}news_index{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="rail_container">
+		<div class="rail_body">
+		{% for article in articles.results %}
+			<article>
+				<ul class="list-inline service-list">
+					{% for service in article.services %}
+						<li>{{ serviceIcon(service) }}{{ service.title }}</li>
+					{% endfor %}
+				</ul>
+				<h2><a href="{{ article.href }}">{{ article.title }}</a></h2>
+				<p>{{ article.previewText }}</p>
+				<div class="share_this">
+					<div class="contents">
+						<span class='st_twitter_large' displayText='Tweet' st_title='{{ article.title }}' st_url='{{ article.href }}'></span>
+						<span class='st_facebook_large' displayText='Facebook' st_title='{{ article.title }}' st_url='{{ article.href }}'></span>
+	          			<span class='st_email_large' displayText='Email' st_title='{{ article.title }}' st_url='{{ article.href }}'></span>
+	          			<span class='st_print_large' displayText='Print' st_title='{{ article.title }}' st_url='{{ article.href }}'></span>
+					</div>
+				</div>
+				<div class="more pull-right">
+					<a href="{{ article.href }}" title="Read More">Read More</a>
+				</div>
+			</article>
+		{% endfor %}
+		{% if articles.totalPages > 1 %}
+				<div class="page_container">
+					<ul class="pagination">
+						{% if articles.previous %}
+							<li class="previous">
+								<a href="?page={{ articles.previous }}" class="btn">Previous</a>
+							</li>
+						{% endif %}
+						{% for page in articles.pages %}
+							<li class="page{% if page == filters.page %} active{% endif %}">
+								{% if page == '...' %}
+									{{ page }}
+								{% else %}
+									<a href="?{{ base_qs }}&page={{ page }}">{{ page }}</a>
+								{% endif %}
+							</li>
+						{% endfor %}
+						{% if articles.next %}
+							<li class="next">
+								<a href="?page={{ articles.next }}" class="btn">Next</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+		{% endif %}
+		</div>
+		<div class="rail">
+			<div class="module">
+				<h3>Services</h3>
+				<ul class="service-list">
+					{% for service in services %}
+						<li>
+							<a href="{{ full_path}}?service={{ service.slug }}">
+								{{ serviceIcon(service) }}
+								{{ service.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="module">
+				<h3>Categories</h3>
+				<ul class="category-list">
+					{% for category in categories %}
+						<li><a href="{{ full_path }}?category={{ category.slug }}">{{ category.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+
+.rail_container {
+	@include make-row(60px);
+	.rail_body {
+		@include make-xs-column(12, 60px);
+		@include make-md-column(9, 60px);
+	}
+	.rail {
+		@include make-xs-column(12, 60px);
+		@include make-md-column(3, 60px);
+		@media print {
+			display: none;
+		}
+		background: transparent url(../images/rail-texture.jpg) repeat 0 0;
+		h3 {
+			margin-bottom: 20px;
+			text-transform: uppercase;
+			font-size: 23px;
+		}
+		.module {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			border-bottom: 1px solid #d9d5d2;
+			border-top: 1px solid #ffffff;
+			ul {
+				list-style: none;
+				font-size: 14px;
+				li {
+					border-bottom: 1px solid #d9d5d2;
+					border-top: 1px solid #ffffff;
+					padding-top: 20px;
+					padding-bottom: 20px;
+					&:first-child {
+						border-top: none;
+						padding-top: 0;
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+			&:first-child {
+				border-top: none;
+				padding-top: 0;
+			}
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+	.rail_body {
+
+		@include container-fixed;
+		@media (min-width: $screen-sm-min) {
+	    width: $container-sm - 270px;
+	  }
+	  @media (min-width: $screen-md-min) {
+	    width: $container-md - 270px;
+	  }
+	  @media (min-width: $screen-lg-min) {
+	    width: $container-lg - 270px;
+	  }
+	}
+	.rail_body {
+		padding: 30px;
+		padding-top: 60px;
+		float: left;
+	}
+	.rail {
+		float: right;
+		padding-top: 40px;
+		@media (min-width: $screen-sm-min) {
+	    width: 300px;
+	  }
+		@media (min-width: $screen-md-min) {
+	    //width: 300px;
+	  }
+	}
+	@media (min-width: $screen-sm-min) {
+		.rail {
+			padding-top: 60px;
+		}
+	}
+}

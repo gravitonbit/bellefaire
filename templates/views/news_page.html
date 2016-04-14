@@ -1,0 +1,83 @@
+{% extends "templates/views/standard_page.html" %}
+{% from 'templates/mixins/service_icons.html' import serviceIcon %}
+{% block body_id %}news_page{% endblock %}
+
+{% block pageTitle %}{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="rail_container">
+		<div class="rail_body">
+			<div class="row">
+				<div class="col-xs-12">
+					<article>
+						<div class="details">
+							<div class="attr">
+								{% if page.author and page.author.name %}
+									Posted by {{ page.author.name.first }} {{ page.author.name.last }}
+								{% endif %}
+								{% if page.publishedDate %}
+									on {{ page._.publishedDate.format('MMMM DD, YYYY') }}
+								{% endif %}
+							</div>
+							<div class="share_this pull-right">
+								<div class="contents">
+									<span class='st_twitter_large' displayText='Tweet' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+									<span class='st_facebook_large' displayText='Facebook' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+				          			<span class='st_email_large' displayText='Email' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+				          			<span class='st_print_large' displayText='Print' st_title='{{ page.title }}' st_url='{{ page.href }}'></span>
+								</div>
+							</div>	
+						</div>
+						
+						<h1>{{ page.title }}</h1>
+						<ul class="list-inline service-list">
+							{% for service in page.services %}
+								<li>{{ serviceIcon(service) }}{{ service.title }}</li>
+							{% endfor %}
+						</ul>
+						{{ page.content }}
+					</article>
+					<div class="page_container">
+						<ul class="pagination">
+							{% if prevArticle %}
+								<li class="previous">
+									<a href="{{ prevArticle.fullPath }}" class="btn">Previous</a>
+								</li>
+							{% endif %}
+							{% if nextArticle %}
+								<li class="next">
+									<a href="{{ nextArticle.fullPath }}" class="btn">Next</a>
+								</li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rail">
+			<div class="module">
+				<h3>Services</h3>
+				<ul class="service-list">
+					{% for service in services %}
+						<li>
+							<a href="{{ service.href }}">
+								{{ serviceIcon(service) }}
+								{{ service.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="module">
+				<h3>Categories</h3>
+				<ul class="category-list">
+					{% for category in categories %}
+						<li><a href="/news/?category={{ category.slug }}">{{ category.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% block body_id %}team_page{% endblock %}
+
+{% block internal_content %}
+<div class="departments">
+	{% for department in departments %}
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>{{ department.title }}</h2>
+				</div>
+			</div>
+			<div class="contact-list">
+				{% for contact in department.contacts %}
+					<div class="contact">
+						{% if contact.photo.exists %}
+							<img src="{{ contact.photo.href }}" alt="{{ contact.name }}" class="img-circle img-responsive">
+						{% endif %}
+						<h4>{{ contact.name }}</h4>
+						<p>{{ contact.contactInfo|nl2br }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% if not loop.last %}
+			{% include "templates/snippets/hr.html" %}
+		{% endif %}
+	{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% import "templates/mixins/flash-messages.html" as FM %}
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>{{ page.title|default("Bellefaire JCB") }}</title>
+
+		<meta property="og:url"           content="{{ page.url }}" />
+		<meta property="og:title"         content="{{ page.title }}" />
+		<meta property="og:description"   content="Check out this page: {{ page.title }}" />
+		<meta property="og:image"         content="/images/bellefaire-general-icon.png" />
+
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link type="text/css" rel="stylesheet" href="jej"/>
+		<link href="/styles/site.css" rel="stylesheet">
+
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		{% block css %}{% endblock %}
+		{% block head %}{% endblock %}
+		<script type="text/javascript">var switchTo5x=true;</script>
+		<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+		<script type="text/javascript">stLight.options({popup: false, servicePopup: true, publisher: "dbe507af-5d10-4610-8b58-fdb628bddd67", doNotHash: true, doNotCopy: false, hashAddressBar: false});</script>
+	</head>
+	<body id="{% block body_id %}{% endblock %}">
+	{% if alert %}
+		{% include "templates/snippets/alert-bar.html" %}
+	{% endif %}
+		<div class="utility-nav hidden-print">
+			<div class="container">
+				<ul class="social nav navbar-nav navbar-left">
+					<li><a href="http://www.facebook.com/BellefaireJCB"><img src="/images/facebook-util-icon.png" alt="Facebook"></a></li>
+					<li><a href="http://www.twitter.com/bellefairejcb"><img src="/images/twitter-util-icon.png" alt="Twitter"></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					{% for page in nav.utility.pages %}
+					<li><a href="{{ page.href }}">{{ page.title }}</a></li>
+					{% endfor %}
+					<li>
+						<form class="form-inline" action="/search/" method="GET">
+						  <div class="form-group">
+						    <input type="text" class="form-control input-sm" name="q" placeholder="Search">
+						  </div>
+						  <button type="submit" class="btn btn-sm">Search</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div role="navigation" class="navbar navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="/donate/" class="btn donate">Donate</a>
+					<a class="navbar-brand" href="/">
+						<img src="/images/logo-white.png" "Bellefaire JCB" />
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						{% for page in nav.primary.pages %}
+							{% set hasNavChildren = page.navChildren.length > 0 %}
+							<li class="{% if hasNavChildren %}has_subnav{% else %}nav_item{% endif %}{% if section_slug == page.slug %} active{% endif %}">
+								{% if page.slug != 'programs-and-services' %}
+								<a href="{{ page.href }}" data-label="{{ page.title }}">
+									{{ page.title }}
+									{% if hasNavChildren %} <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>{% endif %}
+								</a>
+								{% else %}
+								<a data-label="{{ page.title }}">
+									{{ page.title }}
+									{% if hasNavChildren %} <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>{% endif %}
+								</a>
+								{% endif %}
+								{% if hasNavChildren %}
+								<ul class="subnav">
+									{% for child in page.navChildren %}
+										<li><a href="{{ child.href }}" class="track-event" data-category="Header" data-action="Sub Header - Click" data-label="{{ child.title }}">{{ child.title }}</a></li>
+									{% endfor %}
+								</ul>
+								{% endif %}
+							</li>
+						{% endfor %}
+						{% for page in nav.utility.pages %}
+							<li class="visible-xs-block"><a href="{{ page.href }}">{{ page.title }}</a></li>
+						{% endfor %}
+						<li class="donate">
+							<a href="/donate/" class="btn btn-small">Donate <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div id="body">
+
+			{% block intro %}{% endblock %}
+			{{ FM.flashMessages(messages) }}
+			{% block content %}{% endblock %}
+
+			{% if resources %}
+				{% include "templates/snippets/resources.html" %}
+				{% include "templates/snippets/upcoming-events.html" %}
+			{% endif %}
+		</div>
+
+		<div id="footer">
+			{% include "templates/snippets/footer.html" %}
+		</div>
+		<script src="/js/jquery/jquery-1.11.2.min.js"></script>
+		<script src="/js/bootstrap/bootstrap-3.3.4.min.js"></script>
+		<script src="/js/pikaday/pikaday.js"></script>
+		<script src="/js/pikaday/pikaday.jquery.js"></script>
+		<script src="/js/jquery.matchHeight.min.js"></script>
+		<script src="/js/base.js"></script>
+		{% block js %}{% endblock %}
+	</body>
+</html>

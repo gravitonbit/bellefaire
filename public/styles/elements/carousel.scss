@@ -1,0 +1,59 @@
+
+.carousel-caption {
+	background: $brand-primary url(../images/purple-texture.jpg) repeat 50% 50%;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	line-height: 1.7;
+	position: relative;
+	h4 {
+		font-size: 20px;
+		font-weight: 600;
+		color: white;
+		margin-bottom: 30px;
+	}
+}
+.carousel-inner {
+	&:after {
+		content: " ";
+		display: block;
+		position: absolute;
+		bottom: 0;
+		background: url(../images/white-bubble-bottom.png) repeat-x 50% 100%;
+		width: 100%;
+		height: 25px;
+	}
+	> .item {
+		> img, > a > img {
+			width: 100%;
+		}
+	}
+}
+.carousel-control {
+	display: none;
+	&.left {
+		background: transparent url(../images/slideshow-nav-left.png) no-repeat 50% 50%;
+	}
+	&.right {
+		background: transparent url(../images/slideshow-nav-right.png) no-repeat 50% 50%;
+	}
+}
+@media (min-width: $screen-sm-min) {
+	.carousel-caption {
+		padding-left: 15%;
+		padding-right: 15%;
+		h4 {
+			font-size: 30px;
+		}
+	}
+	.carousel-control {
+		display: block;
+	}
+}
+@media (min-width: $screen-md-min) {
+	.carousel-caption h4 {
+		font-size: 43px;
+	}
+}

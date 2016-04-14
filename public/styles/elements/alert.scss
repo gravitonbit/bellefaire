@@ -1,0 +1,18 @@
+.alert{
+	background: url(/images/alert-texture.png) repeat 50% 50%;
+	border-radius: 0;
+	border: none;
+	color: white;
+	margin: 0;
+	p {
+		margin: 0;
+	}
+	a {
+		color: white;
+		text-decoration: underline;
+	}
+	strong {
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+}

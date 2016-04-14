@@ -1,0 +1,47 @@
+#footer {
+	background: url(/images/purple-texture.jpg) repeat 50% 50%;
+	position: relative;
+	padding-top: 30px;
+	color: white;
+	width: 100%;
+	font-size: 13px;
+	a {
+		color: white;
+	}
+	h4{
+		font-size: 18px;
+		color: white;
+		margin-top: 0;
+	}
+	p, ul.navLinks li {
+		margin: 0;
+	}
+	ul.navLinks {
+		column-count: 2;
+	}
+	.section {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.bottom {
+		background: url(/images/purple-texture-dark.jpg) repeat 50% 50%;
+		line-height: 57px;
+		ul {
+			margin: 0;
+			li img {
+				width: 25px;
+				height: 25px;
+			}
+		}
+	}
+	&:before {
+		display: block;
+		content: " ";
+		background: url(../images/white-bubble-top.png) repeat-x 50% 100%;
+		width: 100%;
+		top: 0;
+		height: 6px;
+		position: absolute;
+	}
+}

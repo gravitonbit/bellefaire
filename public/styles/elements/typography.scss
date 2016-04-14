@@ -1,0 +1,19 @@
+p {
+  margin: 0 0 $line-height-computed;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+h3, .h3 {
+	line-height: 35px;
+}
+
+ul {
+	// list-style-position: inside;
+	padding-left: 19px;
+	margin-bottom: $line-height-computed;
+}

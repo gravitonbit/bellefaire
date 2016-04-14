@@ -1,0 +1,17 @@
+.contact-main, .home-bottom {
+	.social {
+		.facebook, .twitter {
+			background: transparent no-repeat 0 50%;
+			line-height: 36px;
+			padding-left: 50px;
+			display: inline-block;
+			margin-top: 15px;
+		}
+		.facebook {
+			background-image: url(../images/contact-facebook-icon.png);
+		}
+		.twitter {
+			background-image: url(../images/contact-twitter-icon.png);	
+		}
+	}
+}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"bellefaire-jcb.mediaitems"},{"v":1,"unique":true,"key":{"slug":1},"name":"slug_1","safe":null,"ns":"bellefaire-jcb.mediaitems","background":true},{"v":1,"key":{"mediaObject":1},"name":"mediaObject_1","background":true,"safe":null,"ns":"bellefaire-jcb.mediaitems"}]}

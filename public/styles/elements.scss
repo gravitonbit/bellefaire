@@ -1,0 +1,66 @@
+@import "elements/jumbotron";
+@import "elements/form";
+@import "elements/tables";
+@import "elements/breadcrumb";
+@import "elements/typography";
+@import "elements/media_object";
+@import "elements/hr";
+@import "elements/btn";
+@import "elements/alert";
+@import "elements/pagination";
+@import "elements/right_rail";
+@import "elements/share_this";
+@import "elements/social";
+@import "elements/anchortags";
+@import "elements/contacts";
+@import "elements/carousel";
+@import "elements/content_blocks";
+
+#body {
+	overflow: hidden;
+}
+
+ul.list-details {
+	font-size: 12px;
+	margin-bottom: 20px;
+	li {
+		margin-bottom: 10px;
+	}
+	span {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+}
+a.more, .more a {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 600;
+	&:after {
+		content: ">";
+		font-weight: 500;
+		margin-left: 6px;
+	}
+}
+.page_block {
+	margin-bottom: 50px;
+	margin-top: 50px;
+	@media print {
+		margin: 0;
+	}
+}
+
+.embed_container {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	margin: 20px 0;
+}
+.embed_container iframe {
+	border: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

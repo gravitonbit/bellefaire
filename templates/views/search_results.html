@@ -1,0 +1,24 @@
+{% extends "templates/views/standard_page.html" %}
+
+{% block body_id %}search_results{% endblock %}
+
+{% block pageTitle %}	{% endblock %}
+
+{% block internal_content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Search Results</h1>
+			<p>Showing results for "{{ query }}"</p>
+			<ul class="list-unstyled results">
+				{% for result in results %}
+					<li>
+						<h2><a href="{{ result.href }}">{{ result.title }}</a></h2>
+						<p>{{ result.metaDescription }}</p>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

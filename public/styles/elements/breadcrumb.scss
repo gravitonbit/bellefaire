@@ -1,0 +1,22 @@
+.breadcrumb {
+  text-transform: uppercase;
+  font-size: 10px;
+  margin-bottom: 0;
+  padding-left: 0;
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  > li {
+    display: inline-block;
+
+    + li:before {
+      content: $breadcrumb-separator + "\00a0";
+    }
+  }
+  > .active {
+    font-weight: bold;
+  }
+}

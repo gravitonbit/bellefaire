@@ -1,0 +1,54 @@
+/*
+ * Pagination
+ */
+.page_container {
+  @include clearfix;
+  padding-top: 40px;
+  line-height: 45px;
+  min-height: 90px;
+  margin-bottom: 75px;
+  .pagination {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    padding-top: 0;
+    padding-left: 150px;
+    padding-right: 150px;
+    > li {
+      &.page {
+        > a, > span, > a:hover {
+          border: none;
+          float: none;
+          color: #626262;
+          background: transparent;
+        }
+      }
+      &.previous > a, &.next a {
+        width: 150px;
+        position: absolute;
+        top: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        border: none;
+      }
+      &.previous > a {
+        float: left;
+        left: 0;
+      }
+      &.next > a {
+        float: right;
+        right: 0;
+      }
+      &.active {
+        > a, > a:hover, > span {
+          background: transparent;
+          color: $brand-primary;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
