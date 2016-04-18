@@ -9,7 +9,7 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
 	view.query('locations', keystone.list('ContactLocation').model.find());
-	view.query('departments', keystone.list('Department').model.find());
+	view.query('departments', keystone.list('Department').model.find().sort('sortOrder'));
 	view.query('keyContacts', keystone.list('TeamMember').model.find().where('keyMember', true));
 
 	view.render('contact_page');

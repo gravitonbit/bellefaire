@@ -52,13 +52,7 @@
 
 		@include container-fixed;
 		@media (min-width: $screen-sm-min) {
-	    width: $container-sm - 270px;
-	  }
-	  @media (min-width: $screen-md-min) {
-	    width: $container-md - 270px;
-	  }
-	  @media (min-width: $screen-lg-min) {
-	    width: $container-lg - 270px;
+	    width: calc(100% - 300px);
 	  }
 	}
 	.rail_body {
@@ -71,9 +65,6 @@
 		padding-top: 40px;
 		@media (min-width: $screen-sm-min) {
 	    width: 300px;
-	  }
-		@media (min-width: $screen-md-min) {
-	    //width: 300px;
 	  }
 	}
 	@media (min-width: $screen-sm-min) {

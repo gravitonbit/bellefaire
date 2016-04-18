@@ -6,7 +6,8 @@ var Types = keystone.Field.Types;
  * ============
  */
 const Department = new keystone.List('Department', {
-  map: { name: 'title' }
+  map: { name: 'title' },
+  sortable: true
 });
 Department.add({
   title: { type: Types.Text },

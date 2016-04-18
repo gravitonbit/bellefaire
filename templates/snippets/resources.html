@@ -10,7 +10,11 @@
 					{% endfor %}
 				</ul>
 				<h2><a href="{{ article.href }}">{{ article.title }}</a></h2>
-				<p class="elipsis">{{ article.content | truncate(120) }}</p>
+				<p class="elipsis">
+					{% if article.content %}
+						{{ article.content | truncate(120) }}
+					{% endif %}
+				</p>
 				<div class="more">
 					<a href="{{ article.href }}" title="Read More">Read More</a>
 				</div>
