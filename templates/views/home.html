@@ -46,7 +46,7 @@
 			<div class="icon-wrapper">
 				<a href="{{ service.href }}">{{ serviceIcon(service) }}</a>
 				<div class="service-detail" style="background-color: {{ service.serviceColor }}">
-					<p>{{ service.heroDescription }}</p>		
+					<p>{{ service.heroDescription }}</p>
 					<a href="{{ service.href }}" class="btn" style="color: {{ service.serviceColor }}">Learn More</a>
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 {{ pageBlock(page.heroWidget) }}
 <div class="container">
 	<div class="home-bottom">
-		<div class="col">
+		<div class="col-lg-4 col-xs-12">
 			<h2>{{ page.snippet.title }}</h2>
 			{% if page.snippet.image.exists %}
 				<a href="{{ page.snippet.link }}"><img src="{{ page.snippet.image.href }}" alt="{{ page.snippet.linkText }}"></a>
@@ -101,7 +101,7 @@
 			<p>{{ page.snippet.description }}</p>
 			<a href="{{ page.snippet.link }}" class="btn">Read More</a>
 		</div>
-		<div class="col">
+		<div class="col-lg-4 col-xs-12">
 			<h2>Featured Events</h2>
 			<ul class="upcomingEvents list-unstyled">
 				{% for event in upcomingEvents %}
@@ -139,17 +139,17 @@
 				<a href="/events/" class="btn">View More</a>
 			</div>
 		</div>
-		<div class="col">
+		<div class="col-lg-4 col-xs-12">
 			{{ page.newsletterEmbed }}
 			<div class="social row">
 				<div class="col-xs-12">
 					<h4>Follow Us</h4>
 				</div>
 				<div class="col-xs-6">
-					<a href="https://www.facebook.com/BellefaireJCB" class="facebook">/BellefaireJcb</a>	
+					<a href="https://www.facebook.com/BellefaireJCB" class="facebook">/BellefaireJcb</a>
 				</div>
 				<div class="col-xs-6">
-					<a href="https://twitter.com/bellefairejcb" class="twitter">@BellefaireJCB</a>	
+					<a href="https://twitter.com/bellefairejcb" class="twitter">@BellefaireJCB</a>
 				</div>
 			</div>
 		</div>

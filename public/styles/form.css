@@ -1,0 +1,97 @@
+.wufoo {
+  font-family: "Avenir Next", serif;
+}
+
+.wufoo .info h2 {
+    color: #545454;
+}
+
+.wufoo input.text, .wufoo textarea.textarea, .wufoo input.file, .wufoo select.select {
+    border-radius: 19px;
+    padding: 10px 0 10px 10px;
+    background-color: #f7f7f7;
+    box-shadow: inset 0px 2px 5px 3px #d9d9d9;
+    border: 1px solid #bbbbbb;
+    color: #5a5a5a;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.wufoo label.desc, .wufoo legend.desc {
+    color: #545454;
+    margin-bottom: 12px;
+}
+
+.wufoo label.desc {
+    display: none;
+}
+
+.wufoo li div, .wufoo li span, .wufoo li div label, .wufoo li span label {
+    font-family: inherit;
+    color: #545454;
+}
+
+.wufoo input.large, .wufoo select.large {
+    width: 96%;
+}
+
+.wufoo li.focused{
+	background-color: transparent;
+}
+
+.wufoo span.subfield {
+    display: inline-block;
+    width: 50%;
+}
+
+.wufoo li.buttons {
+    text-align: right;
+}
+
+.wufoo input.submit {
+    background: #ffa608;
+    background-image: -webkit-linear-gradient( top left, #ffc257, #ffa608);
+    background-image: linear-gradient(to bottom right, #ffc257, #ffa608);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: white;
+    white-space: normal;
+    border: 0;
+    padding: 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.wufoo textarea.textarea {
+    min-width: 96%;
+}
+
+.wufoo form span.req {
+    color: #5a5a5a !important;
+}
+
+input, textarea { outline: 0; }
+
+
+@media (max-width: 768px){
+    .wufoo li.left50 {
+        width: 96% !important;
+    }
+
+    .wufoo li.right50 {
+        width: 96% !important;
+        float: left;
+    }
+}
+
+.wufoo li.left50, .wufoo li.right50 {
+  width: 47% !important;
+  float: left;
+  clear: none;
+}
+
+.wufoo li.right50 {
+  float: right;
+}

@@ -45,7 +45,7 @@
 		padding-left: 15%;
 		padding-right: 15%;
 		h4 {
-			font-size: 30px;
+			font-size: 25px;
 		}
 	}
 	.carousel-control {
@@ -54,6 +54,11 @@
 }
 @media (min-width: $screen-md-min) {
 	.carousel-caption h4 {
-		font-size: 43px;
+		font-size: 22px;
+	}
+}
+@media (min-width: $screen-lg-min) {
+	.carousel-caption h4 {
+		font-size: 30px;
 	}
 }

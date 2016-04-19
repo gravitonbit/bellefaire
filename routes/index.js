@@ -7,7 +7,7 @@ var sassMiddleware = require('node-sass-middleware');
 var path = require('path');
 var autoprefixer = require('autoprefixer')({ browsers: ['> 1%', 'IE 7'], cascade: false });
 
-/**/
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('routes', middleware.lowercaseUrlMiddleware);
