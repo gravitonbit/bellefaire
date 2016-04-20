@@ -7,6 +7,7 @@ require('dotenv').load();
 var keystone = require('keystone');
 var cons = require('consolidate');
 var nunjucks = require('nunjucks');
+const util = require('util');
 
 var path = require('path');
 var postcssMiddleware = require('postcss-middleware');
@@ -22,18 +23,65 @@ cons.requires.nunjucks.addFilter('nl2br', function(str) {
     return str.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	}
 });
+cons.requires.nunjucks.addFilter('revertSort', function(val, case_sensitive, by) {
+	if (!util.isObject(val)) {
+    console.error('revertSort filter: val must be an object');
+  }
+
+  var array = [];
+  for (var k in val) {
+    // deliberately include properties from the object's prototype
+    array.push([k,val[k]]);
+  }
+
+  var si;
+  if (by === undefined || by === 'key') {
+    si = 0;
+  } else if (by === 'value') {
+    si = 1;
+  } else {
+    console.error('dictsort filter: You can only sort by either key or value');
+  }
+
+  array.sort(function(t1, t2) {
+    var a = t1[si];
+    var b = t2[si];
+
+    if (!case_sensitive) {
+      if (util.isString(a)) {
+        a = a.toUpperCase();
+      }
+      if (util.isString(b)) {
+        b = b.toUpperCase();
+      }
+    }
+
+    return a < b ? 1 : (a === b ? 0 : -1);
+  });
+
+  return array;
+});
+
+cons.requires.nunjucks.addFilter('formatUrl', function(str) {
+	var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if(str && str.match(pattern)) {
+		return 'mailto:' + str;
+	}else{
+		return str;
+	}
+});
 
 keystone.init({
 
 	'name': 'Bellefaire JCB',
 	'brand': 'Bellefaire JCB',
-	
+
   'static': ['public', 'data/uploads'],
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'html',
 	'custom engine': cons.nunjucks,
-	
+
 	'wysiwyg images': true,
   'wysiwyg additional buttons': 'formatselect',
   'wysiwyg additional plugins': 'paste',
@@ -73,5 +121,3 @@ keystone.set('nav', {
 });
 
 keystone.start();
-
-
