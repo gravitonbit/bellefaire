@@ -6,7 +6,8 @@ var Types = keystone.Field.Types;
  * ============
  */
 const TeamMember = new keystone.List('TeamMember', {
-  map: { name: 'name' }
+  map: { name: 'name' },
+  sortable: true
 });
 TeamMember.add({
 	name: { type: Types.Text },

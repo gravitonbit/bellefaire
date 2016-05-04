@@ -6,7 +6,8 @@ var Types = keystone.Field.Types;
  * ============
  */
 const ContactLocation = new keystone.List('ContactLocation', {
-  map: { name: 'title' }
+  map: { name: 'title' },
+  sortable: true
 });
 ContactLocation.add({
 	title: { type: Types.Text },

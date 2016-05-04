@@ -4,6 +4,8 @@
 
 .wufoo .info h2 {
     color: #545454;
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
 .wufoo input.text, .wufoo textarea.textarea, .wufoo input.file, .wufoo select.select {

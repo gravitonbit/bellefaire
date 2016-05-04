@@ -8,9 +8,9 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
 
-	view.query('locations', keystone.list('ContactLocation').model.find());
+	view.query('locations', keystone.list('ContactLocation').model.find().sort('sortOrder'));
 	view.query('departments', keystone.list('Department').model.find().sort('sortOrder'));
-	view.query('keyContacts', keystone.list('TeamMember').model.find().where('keyMember', true));
+	view.query('keyContacts', keystone.list('TeamMember').model.find().where('keyMember', true).sort('sortOrder'));
 
 	view.render('contact_page');
 };
